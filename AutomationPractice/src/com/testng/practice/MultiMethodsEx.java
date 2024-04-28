@@ -1,4 +1,4 @@
-package com.testing.practice;
+package com.testng.practice;
 
 import java.util.concurrent.TimeUnit;
 
