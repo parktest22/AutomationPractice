@@ -29,16 +29,18 @@ public class MultiMethodsEx {
 	
 	@BeforeMethod
 	public void bMethod() {
+		System.out.println("Before method invoked");
 		System.setProperty("webdriver.chrome.driver", "C:\\CodeHome\\jars\\chromedriver-win64\\chromedriver.exe");
 		driver = new ChromeDriver();
 	}
 	
 	@AfterMethod
 	public void aMethod() {
+		System.out.println("After method invoked");
 		driver.quit();
 	}
 	
-	@Test (priority = 1)
+	@Test (priority = 1,  groups ="smoke")
 	public void actions1() {
 		
 		driver.get("https://the-internet.herokuapp.com/jqueryui/menu");
@@ -52,10 +54,9 @@ public class MultiMethodsEx {
 		Actions a = new Actions(driver);
 		a.moveToElement(Element_Enabled).pause(2000).moveToElement(Element_Downloads).pause(2000).moveToElement(Element_Excel).click().build().perform();
 		
-		
 	}
 	
-	@Test (priority = 0)
+	@Test (priority = 0, groups ="Regression")
 	public void actions2() {
 
 		driver.get("https://the-internet.herokuapp.com/drag_and_drop");
@@ -67,6 +68,7 @@ public class MultiMethodsEx {
 		
 		Actions a = new Actions(driver);
 		a.dragAndDrop(element_dragA, element_drabB).build().perform();
+		System.out.println("Priority 0 test completed");
 		
 	}
 }
